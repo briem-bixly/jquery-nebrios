@@ -40,5 +40,6 @@
                 console.log(data);
             };
         }
+        return NebriOSClient;
     };
 }());
