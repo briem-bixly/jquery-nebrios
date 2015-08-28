@@ -21,14 +21,32 @@ var nebri = $.nebriosclient('instance_name');
 - method: the desired HTTP request method
 - payload: an object containing params and values, can be an empty object
 - callback (optional): the function to execute after a successful api request. this callback will receive all data included in your view's response
+- error_callback (optional): the function to execute after an unsuccessful api request.
 
 
-<h2>Example</h2>
+<h2>Examples</h2>
 ```
 var nebri = $.nebriosclient('demo');
 var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greeting":"hello"}, function(data){
     console.log(data); //outputs {"identifier": "02fe4cee4d484b9bae044bd640bce76"}
 });
+```
+```
+var callback_func = function(data) {
+    console.log(data); //outputs {"identifier": "02fe4cee4d484b9bae044bd640bce76"}
+};
+var nebri = $.nebriosclient('francois');
+var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greeting":"hello"}, callback_func);
+```
+```
+var callback_func = function(data) {
+    console.log(data);
+};
+var error_callback_func = function(data) {
+    console.log(data); //outputs Bad Request Response because greeting isn't supported
+};
+var nebri = $.nebriosclient('francois');
+var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greeting":"hi"}, callback_func, error_callback_func);
 ```
 
 <h2>Requirements</h2>
