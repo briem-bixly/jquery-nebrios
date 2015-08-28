@@ -12,7 +12,7 @@ In order to use this component to make NebriOS api requests, you must instantiat
 ```
 var nebri = $.nebriosclient('instance_name');
 ```
-- instance name is your NebriOS instance name. i.e. https://<instance_name>.nebrios.com
+- instance name is your NebriOS instance name. i.e. https://<strong>instance_name</strong>.nebrios.com
 
 <h2>Public Functions</h2>
 <strong>api_request</strong>: has 5 required arguments
