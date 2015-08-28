@@ -38,7 +38,9 @@
             }
         };
         NebriOSClient.prototype.returnData = function(data) {
-            return (this.callback)(data);
+            if (this.callback != null) {
+                return (this.callback)(data);
+            }
         };
         return NebriOSClient;
     })();
