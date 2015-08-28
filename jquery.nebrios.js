@@ -44,7 +44,7 @@
     })();
     $.nebriosclient = function(instance_name) {
         if (!this.nebriosClientInstance) {
-            this.nebriosClientInstance = new NebriOSClient(instance_name || 'francois');
+            this.nebriosClientInstance = new NebriOSClient(instance_name || 'demo');
         }
         return this.nebriosClientInstance;
     };
