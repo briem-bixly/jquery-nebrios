@@ -16,7 +16,7 @@ var nebri = $.nebriosclient('instance_name');
 
 <h2>Public Functions</h2>
 <strong>api_request</strong>: has 5 required arguments
-- api_module: the name of the api file stored on your NebriOS instance
+- api_module: the name of the api module stored on your NebriOS instance
 - view_name: the name of the target function contained in the given api module
 - method: the desired HTTP request method
 - payload: an object containing params and values, can be an empty object
