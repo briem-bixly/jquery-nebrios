@@ -15,12 +15,12 @@ var nebri = $.nebriosclient('instance_name');
 - instance name is your NebriOS instance name. i.e. https://<strong>instance_name</strong>.nebrios.com
 
 <h2>Public Functions</h2>
-<strong>api_request</strong>: has 5 required arguments
+<strong>api_request</strong>: has 4 required arguments
 - api_module: the name of the api module stored on your NebriOS instance
 - view_name: the name of the target function contained in the given api module
 - method: the desired HTTP request method
 - payload: an object containing params and values, can be an empty object
-- callback: the function to execute after a successful api request. this callback will receive all data included in your view's response
+- callback (optional): the function to execute after a successful api request. this callback will receive all data included in your view's response
 
 
 <h2>Example</h2>
