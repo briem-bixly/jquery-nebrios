@@ -26,7 +26,7 @@ var nebri = $.nebriosclient('instance_name');
 
 <h2>Examples</h2>
 ```
-var nebri = $.nebriosclient('demo');
+var nebri = $.nebriosclient('instance_name');
 var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greeting":"hello"}, function(data){
     console.log(data); //outputs {"identifier": "02fe4cee4d484b9bae044bd640bce76"}
 });
@@ -35,7 +35,7 @@ var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greet
 var callback_func = function(data) {
     console.log(data); //outputs {"identifier": "02fe4cee4d484b9bae044bd640bce76"}
 };
-var nebri = $.nebriosclient('francois');
+var nebri = $.nebriosclient('instance_name');
 var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greeting":"hello"}, callback_func);
 ```
 ```
@@ -45,7 +45,7 @@ var callback_func = function(data) {
 var error_callback_func = function(data) {
     console.log(data); //outputs Bad Request Response because greeting isn't supported
 };
-var nebri = $.nebriosclient('francois');
+var nebri = $.nebriosclient('instance_name');
 var request = nebri.api_request('greeting_api', 'start_greeting', "GET", {"greeting":"hi"}, callback_func, error_callback_func);
 ```
 
