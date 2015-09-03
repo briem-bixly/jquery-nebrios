@@ -8,7 +8,7 @@ This app is intended for use with a Nebri instance. Visit https://nebrios.com to
 Copy jquery.nebrios.js to the appropriate location in your application.
 
 <h2>Usage</h2>
-In order to use this component to make NebriOS api requests, you must instantiate the object.
+In order to use this component to make Nebri api requests, you must instantiate the object.
 ```
 var nebri = $.NebriClient('instance_name');
 ```
