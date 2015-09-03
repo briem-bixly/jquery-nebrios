@@ -5,7 +5,7 @@ The simple and easy-to-use package for making NebriOS api requests from a jQuery
 This app is intended for use with a NebriOS instance. Visit https://nebrios.com to sign up for free!
 
 <h2>Installation</h2>
-Copy jquery.nebrios.js to the appropriate location in your application.
+Copy jquery.nebri.js to the appropriate location in your application.
 
 <h2>Usage</h2>
 In order to use this component to make NebriOS api requests, you must instantiate the object.
