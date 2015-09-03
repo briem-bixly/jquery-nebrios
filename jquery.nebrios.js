@@ -1,68 +1,71 @@
 (function($) {
-    var NebriOSClient;
-    NebriOSClient = (function() {
-        var instance_name = '';
-        function NebriOSClient(instance_name){
-            this.instance = instance_name;
+    function NebriClient(instance_name){
+        this.instance = instance_name;
+    }
+    NebriClient.prototype.api_request = function(api_module, view_name, method, payload, callback, error_callback) {
+        var me = this;
+        var url = 'https://' + this.instance + '.nebrios.com/api/v1/' + api_module + '/' + view_name;
+        if (method == "GET"){
+            var params = $.param(payload);
+            $.ajax({
+                type: method,
+                url: url + '?' + params,
+                beforeSend: function(xhr) {
+                    if ('basic_auth' in payload){
+                        xhr.setRequestHeader("Authorization", payload['basic_auth']);
+                    }
+                },
+                success: function(data) {
+                    me.returnData(data, callback);
+                },
+                error: function(data) {
+                    me.returnError(data, error_callback);
+                }
+            });
+        } else if (method == "POST" || method == "PUT") {
+            $.ajax({
+                type: method,
+                url: url,
+                data: payload,
+                beforeSend: function(xhr) {
+                    if ('basic_auth' in payload){
+                        xhr.setRequestHeader("Authorization", payload['basic_auth']);
+                    }
+                },
+                success: function(data) {
+                    me.returnData(data, callback);
+                },
+                error: function(data) {
+                    me.returnError(data, error_callback);
+                }
+            });
+        } else {
+            $.ajax({
+                type: method,
+                url: url,
+                beforeSend: function(xhr) {
+                    if ('basic_auth' in payload){
+                        xhr.setRequestHeader("Authorization", payload['basic_auth']);
+                    }
+                },
+                success: function(data) {
+                    me.returnData(data, callback);
+                },
+                error: function(data) {
+                    me.returnError(data, error_callback);
+                }
+            });
         }
-        NebriOSClient.prototype.api_request = function(api_module, view_name, method, payload, callback, error_callback) {
-            var me = this;
-            me.callback = callback;
-            me.error_callback = error_callback;
-            var url = 'https://' + this.instance + '.nebrios.com/api/v1/' + api_module + '/' + view_name;
-            if (method == "GET"){
-                var params = $.param(payload);
-                $.ajax({
-                    type: method,
-                    url: url + '?' + params,
-                    success: function(data) {
-                        me.returnData(data);
-                    },
-                    error: function(data) {
-                        me.returnError(data);
-                    }
-                });
-            } else if (method == "POST" || method == "PUT") {
-                $.ajax({
-                    type: method,
-                    url: url,
-                    data: payload,
-                    success: function(data) {
-                        me.returnData(data);
-                    },
-                    error: function(data) {
-                        me.returnError(data);
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: method,
-                    url: url,
-                    success: function(data) {
-                        me.returnData(data);
-                    },
-                    error: function(data) {
-                        me.returnError(data);
-                    }
-                });
-            }
-        };
-        NebriOSClient.prototype.returnData = function(data) {
-            if (this.callback != null) {
-                return (this.callback)(data);
-            }
-        };
-        NebriOSClient.prototype.returnError = function(data) {
-            if (this.error_callback != null) {
-                return (this.error_callback)(data);
-            }
-        };
-        return NebriOSClient;
-    })();
-    $.nebriosclient = function(instance_name) {
-        if (!this.nebriosClientInstance) {
-            this.nebriosClientInstance = new NebriOSClient(instance_name || 'demo');
-        }
-        return this.nebriosClientInstance;
     };
+    NebriClient.prototype.returnData = function(data, callback) {
+        if (callback != null) {
+            return callback(data);
+        }
+    };
+    NebriClient.prototype.returnError = function(data, callback) {
+        if (callback != null) {
+            return callback(data);
+        }
+    };
+    $.NebriClient = NebriClient;
 })(jQuery);
